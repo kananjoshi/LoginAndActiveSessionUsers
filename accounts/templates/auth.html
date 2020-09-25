@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if is_admin %}
+        <h2> Currently Active Users</h2>
+        {% for user in users %}
+            <h5 style="margin-top: 20px">====================== Active USER ========================</h5>
+            <div>
+                <p><b>USERNAME :</b> {{ user.username }} </p>
+            </div>
+
+            <div style="display: block">
+                <p><b> EMAIL : </b> {{ user.email }}</p>
+            </div>
+            {% if user.profile %}
+                <div>
+                    <p><b>DESCRIPTION : </b>{{ user.profile.description }}</p>
+                </div>
+                <div>
+                    <p><b>MOBILE NUMBER : </b>{{ user.profile.phone_no }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <h2> Your Details </h2>
+        <div>
+            <p><b>USERNAME :</b> {{ user.username }} </p>
+        </div>
+
+        <div style="display: block">
+            <p><b> EMAIL : </b> {{ user.email }}</p>
+        </div>
+        {% if user.profile %}
+            <div>
+                <p><b>DESCRIPTION : </b>{{ user.profile.description }}</p>
+            </div>
+            <div>
+                <p><b>MOBILE NUMBER : </b>{{ user.profile.phone_no }}</p>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
